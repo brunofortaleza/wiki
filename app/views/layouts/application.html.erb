@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="loading" lang="pt-br" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta name="description" content="Descrição da aplicação">
+  <meta name="keywords" content="governo, tocantins">
+  <meta name="author" content="ATI - Agência de Tecnologia da Informação - TO">
+  <title>Página de Modelo Padronizado | Materialize - Material Design Admin Template</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= yield :header %>
+</head>
+<!-- END: Head-->
+<body class="vertical-layout page-header-light vertical-menu-collapsible 2-columns  " data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
+
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/sidenav' %>
+  <div id="main">
+    <div id="swup" class="row transition-fade">
+      <%= render 'layouts/breadcrumb' %>
+      <div class="col s12">
+        <div id="main-content" class="container transition-fade">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'layouts/sidenav-right' %>
+  <%= render 'layouts/footer' %>
+</body>
+</html>

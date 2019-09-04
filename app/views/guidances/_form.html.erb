@@ -1,0 +1,52 @@
+<%= form_with(model: guidance, local: true) do |form| %>
+  <% if guidance.errors.any? %>
+    <div id="error_explanation">
+      <!--<h2><%#= pluralize(guidance.errors.count, "error") %> prohibited this guidance from being saved:</h2>-->
+
+      <ul>
+      <% guidance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_field :title, id: :guidance_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sistema %>
+    <%= form.text_field :system_id, id: :guidance_system_id%>
+    <%#= form.select :system_id, System.all.collect { |p| [p.name]}, include_blank: true, id: :guidance_system_id, class:'input-field' %>
+  </div>
+
+  <h4>Instruções</h4>
+  <!-- 
+    O cocoon exige que seu nested_form esteja dentro de uma div com id "nome_do_seu_nested_no_plural"
+    no nosso caso #experiences
+  -->
+  <div id="instructions">
+    <%= form.fields_for :instructions do |instruction| %>
+      <!-- 
+        é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
+        no nosso caso _experience_fields.html.erb
+      -->
+      <%= render 'instruction_fields', f: instruction %>
+    <% end %>
+ 
+    <!-- 
+      O link para adicionar dinamicamente os fields deve estar dentro de uma div .links
+    -->
+    <div class="links">
+      <!-- O link_to_add_association é um helper provido pela gem -->
+      <%= link_to_add_association 'Adicionar Instrução', form, :instructions, class:'btn verde-to' %>
+      <br><br><br><br><br>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Criar Orientação", class:'btn verde-to' %>
+  </div>
+<% end %>

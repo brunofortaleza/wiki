@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<%# <h1 >Orientação</h1> %>
+<% title "Orientação" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Sistema</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @guidances.each do |guidance| %>
+      <tr>
+        <td><%= guidance.title %></td>
+        <td><%= guidance.system.name %></td>
+        <td><%= link_to 'Visualizar', guidance, class:'btn azul-to' %></td>
+        <td><%= link_to 'Editar', edit_guidance_path(guidance), class:'btn azul-to' %></td>
+        <td><%= link_to 'Excluir', guidance, method: :delete, data: { confirm: 'Você tem certeza?' }, class:'btn red darken-4' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova Orientação', new_guidance_path, class:'btn azul-to' %>

@@ -1,0 +1,45 @@
+<%%= form_for(<%= singular_table_name %>) do |f| %>
+  <%% if <%= singular_table_name %>.errors.any? %>
+    <div id="error_explanation" class="card-panel red white-text">
+      <h5>Resolva os problemas a seguir antes de Salvar:</h5>
+
+      <ul>
+      <%% <%= singular_table_name %>.errors.full_messages.each do |message| %>
+        <li><%%= message %></li>
+      <%% end %>
+      </ul>
+    </div>
+  <%% end %>
+<div class="card-panel">
+  
+<% attributes.each do |attribute| -%>
+<div class="row">
+  <div class="input-field">
+<% if attribute.password_digest? -%>
+    <%%= f.password_field :password %>
+    <%%= f.label :password %>
+  </div>
+
+  <div class="input-field">
+    <%%= f.password_field :password_confirmation %>
+    <%%= f.label :password_confirmation %>
+<% else -%>
+    <%- if attribute.reference? -%>
+    <%%= f.collection_select :<%= attribute.column_name %>, <%= attribute.name.camelize %>.all, :id, :name, prompt: true  %>
+    <% else %>
+    <%%= f.<%= attribute.field_type %> :<%= attribute.column_name %> %>
+    <%%= f.label :<%= attribute.column_name %> %>
+    <% end %>
+<% end -%>
+  </div>
+  </div>
+
+<% end -%>
+</div>
+  <div class="row">
+              <div class="input-field col s12">
+                <button class="btn verde-to waves-effect waves-light right" type="submit" name="action">Salvar
+                </button>
+              </div>
+            </div>
+<%% end %>

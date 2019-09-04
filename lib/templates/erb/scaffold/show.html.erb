@@ -1,0 +1,59 @@
+<%% title "<%= singular_table_name.capitalize %>" %>
+<%% content_for :page_actions do %>
+<a class="btn red darken-2 waves-effect waves-light breadcrumbs-btn right ml-1 sw-delete" title="Excluir item">
+  <i class="material-icons">delete</i>
+</a>
+<a  href="<%%= url_for edit_<%= singular_table_name %>_path %>" class="btn azul-to waves-effect waves-light breadcrumbs-btn right">
+  <i class="material-icons right">edit</i>Editar <%= singular_table_name %>
+</a>
+<%% end %>
+
+<div class="card-panel">
+	<div class="row">
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<div class="col s12">
+  <label><%= attribute.human_name %>:</label>
+  <p><%%= @<%= singular_table_name %>.<%= attribute.name %> %></p>
+</div>
+<% end -%>
+</div>
+</div>
+
+<%% content_for :footer do %>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<!-- polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script type="text/javascript">
+  $(document).ready(function (){
+    $('.sw-delete').click(function (e) {
+      e.preventDefault();
+
+      Swal.fire({
+        title: "Quer excluir o item?",
+        text: "Esta é uma ação que não tem volta!",
+        type: 'warning',
+        showCancelButton: true,
+        cancelButtonColor: '#999',
+        confirmButtonColor: '#d33',
+        cancelButtonText: 'Não excluir',
+        confirmButtonText: 'Excluir item',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result) {
+          Swal.fire(
+                    'Excluído!',
+                    'O item foi excluído.',
+                    'success'
+                    )
+        } else {
+          Swal.fire({
+            title:'Excluído!',
+            text:'O item foi excluído.',
+            type: 'error'
+          })
+        }
+      });
+    })
+  });
+</script>
+<%% end %>

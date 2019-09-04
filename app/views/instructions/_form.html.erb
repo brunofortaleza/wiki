@@ -1,0 +1,32 @@
+<%= form_with(model: instruction, local: true) do |form| %>
+  <% if instruction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(instruction.errors.count, "error") %> prohibited this instruction from being saved:</h2>
+
+      <ul>
+      <% instruction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :instruction_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image, id: :instruction_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :guidance_id %>
+    <%= form.text_field :guidance_id, id: :instruction_guidance_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

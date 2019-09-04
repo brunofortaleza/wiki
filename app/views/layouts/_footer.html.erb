@@ -1,0 +1,19 @@
+<!-- BEGIN: Footer-->
+<footer class="page-footer footer footer-static footer-light navbar-border navbar-shadow">
+	<div class="footer-copyright">
+		<div class="container">Diretoria de Sistemas de Informação<span>&copy; 2019          <a href="http://www.ati.to.gov.br/" target="_blank">ATI</a></span></div>
+	</div>
+</footer>
+
+<!-- END: Footer-->
+
+<%#= javascript_include_tag 'application', 'data-turbolinks-track': 'false' %>
+<!-- jquery -->
+<script src="/assets/vendors.min.js" type="text/javascript"></script>
+<!-- Outros -->
+<script src="/assets/application.js" type="text/javascript"></script>
+<script src="/assets/jquery-validation/jquery.validate.min.js"></script>
+<script src="/assets/plugins.js" type="text/javascript"></script>
+<script src="/assets/custom/custom-script.js" type="text/javascript"></script>
+<script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>  
+<%= yield(:footer) %>
